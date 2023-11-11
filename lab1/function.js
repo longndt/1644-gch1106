@@ -27,7 +27,7 @@ getTotal(10, 20)                         //10, 20: argument (đối số)
    return:    output
 */
 
-//loại 4: function có cả parameter và return
+//loại 4: f2unction có cả parameter và return
 function welcome(name) {
    return 'Welcome ' + name + ' to Greenwich Vietnam'
 }
