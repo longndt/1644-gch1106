@@ -1,0 +1,22 @@
+heach : foreach in hbs
+<ol>
+   {{#each mobiles }}
+   <li>{{ this }}</li>
+   {{/each}}
+</ol>
+
+
+<table border="1">
+   <tr>
+      <th>
+         Mobiles
+      </th>
+   </tr>
+   {{#each mobiles }}
+   <tr>
+      <td>
+         {{ this }}
+      </td>
+   </tr>
+   {{/each}}
+</table>
