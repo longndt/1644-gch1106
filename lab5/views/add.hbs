@@ -1,0 +1,24 @@
+<form action="/add" method="post">
+   <h1>Add new student</h1>
+   Name: <input type="text" name="name" id="" required minlength="3" maxlength="20">
+   <br><br>
+   Birthday: <input type="date" name="birthday" id="" required>
+   <br><br>
+   Gender:
+   <input type="radio" name="gender" value="Male"> Male
+   <input type="radio" name="gender" value="Female"> Female
+   <br><br>
+   Email:
+   <input type="email" name="email" required>
+   <br><br>
+   Department:
+   <select name="department" id="">
+      <option value="Computing">Computing</option>
+      <option value="Business">Business</option>
+      <option value="Graphic Design">Graphic Design</option>
+   </select>
+   <br><br>
+   Image: <input type="url" name="image" required>
+   <br><br>
+   <input type="submit" value="Add">
+</form>

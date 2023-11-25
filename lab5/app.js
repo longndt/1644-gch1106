@@ -9,6 +9,10 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+//import and config body-parser library (get data from client: form, url)
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+
 //config date-format for hbs
 var hbs = require('hbs');
 hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
