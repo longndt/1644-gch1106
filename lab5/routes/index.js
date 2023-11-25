@@ -16,7 +16,6 @@ router.post('/add', async (req, res) => {
   res.redirect('/');
 })
 
-
 router.get('/', async (req, res) => {
   var students = await StudentModel.find({});
   console.log(students);
