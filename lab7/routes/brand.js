@@ -1,17 +1,11 @@
 var express = require('express');
 var router = express.Router();
-//import Model file
 var BrandModel = require('../models/BrandModel');
 var MobileModel = require('../models/MobileModel');
 
-//URL : localhost:3001/brand
 router.get('/', async (req, res) => {
-   //SQL : SELECT * FROM brands
    var brands = await BrandModel.find({});
-   //console.log(brands);
-   //res.send(brands)
    res.render('brand/index', { brands });
-   //location: views/brand/index.hbs
 })
 
 router.get('/add', (req, res) => {
@@ -19,12 +13,8 @@ router.get('/add', (req, res) => {
 })
 
 router.post('/add', async (req, res) => {
-   //get data from client-side through form
    var brand = req.body;
-   //SQL : INSERT INTO brands ...
-   //insert data to collection
    await BrandModel.create(brand);
-   //redirect to index page after succeed
    res.redirect('/brand');
 })
 
@@ -33,6 +23,51 @@ router.get('/detail/:id', async (req, res) => {
    //SQL: SELECT * FROM mobiles WHERE brand = "id"
    var mobiles = await MobileModel.find({ brand : id }).populate('brand');
    res.render('brand/detail', { mobiles })
+})
+
+router.get('/delete/:id', async (req, res) => {
+   var id = req.params.id;
+   //cách 1
+   try {
+      //SQL: DELETE FROM brands WHERE brand = id
+      await BrandModel.findByIdAndDelete(id);
+      console.log('Delete brand succeed !');
+   } catch (err) {
+      console.log('Delete brand fail. Error: ' + err);
+   };
+
+   //cách 2
+   var brand = await BrandModel.findById(id);
+   await BrandModel.deleteOne(brand);
+
+   res.redirect('/brand');
+})
+
+router.get('/deleteall', async (req, res) => {
+   //SQL: DELETE FROM brands
+   //     TRUNCATE TABLE brands
+   await BrandModel.deleteMany();
+   console.log('Delete all brand succeed !');
+   res.redirect('/brand');
+})
+
+router.get('/edit/:id', async (req, res) => {
+   var id = req.params.id;
+   var brand = await BrandModel.findById(id);
+   res.render('brand/edit', { brand });
+})
+
+router.post('/edit/:id', async (req, res) => {
+   var id = req.params.id;
+   var brand = req.body;
+   try {
+      //SQL: UPDATE brands SET A = B WHERE id = 'id'
+      await BrandModel.findByIdAndUpdate(id, brand);
+      console.log('update succeed !');
+   } catch (err) {
+      console.log('update failed. Error: ' + err);
+   }
+   res.redirect('/brand');
 })
 
 module.exports = router;

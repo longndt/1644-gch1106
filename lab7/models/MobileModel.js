@@ -5,8 +5,10 @@ var MobileSchema = mongoose.Schema({
    image: String,
    brand: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'brands'      // "brands" : reference collection
+      ref: 'brands'  // 'brands': collection
    }
 });
-var MobileModel = mongoose.model('mobiles', MobileSchema);
+//Relationship : mobiles (many) - brands (one)
+
+var MobileModel = mongoose.model('mobiles', MobileSchema); // 'mobiles' : collection
 module.exports = MobileModel;
