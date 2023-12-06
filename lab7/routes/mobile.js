@@ -17,15 +17,7 @@ router.get('/customer', async (req, res) => {
 })
 
 router.get('/add', async (req, res) => {
-   var brands = await BrandModel.find({});
-   res.render('mobile/add', { brands });
-})
 
-router.post('/add', async (req, res) => {
-   var mobile = req.body;
-   await MobileModel.create(mobile);
-   res.redirect('/mobile');
-})
 
 router.get('/delete/:id', async (req, res) => {
    await MobileModel.findByIdAndDelete(req.params.id);
